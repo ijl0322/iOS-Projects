@@ -33,3 +33,5 @@ It uses google app engine to save the user's images.
 
 A cute camera app that allows users to add text and cute bunny stickers (the bunny's name is Benny Bunny, designed by myself) to their own photo. It also has an iMessage extension, with a sticker pack of 40 bunny stickers, and also the photo editing capabilities mentioned above. 
 
+<img src="http://i.imgur.com/hrUkKpp.png" width="900"/>
+
