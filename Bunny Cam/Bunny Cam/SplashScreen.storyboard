@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5Cl-Hk-UJP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="fe2-uV-F4h">
+            <objects>
+                <viewController id="5Cl-Hk-UJP" customClass="SplashScreenViewController" customModule="Bunny_Cam" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gZ3-VA-Hxd"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Yv-Dh-VP3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LMk-Kc-Fad">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spashScreen" translatesAutoresizingMaskIntoConstraints="NO" id="7WV-fi-1FX">
+                                <rect key="frame" x="0.0" y="126" width="375" height="375"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 2017 Isabel J. Lee · All rights reserved ·" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvT-hb-fOL">
+                                <rect key="frame" x="29" y="626" width="316" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="316" id="3XC-Dk-QEs"/>
+                                    <constraint firstAttribute="height" constant="21" id="teY-TM-vcP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bennyCamTitle" translatesAutoresizingMaskIntoConstraints="NO" id="lVY-Wn-NMD">
+                                <rect key="frame" x="10" y="9" width="214" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="ADW-Lb-Ndg"/>
+                                    <constraint firstAttribute="width" constant="214" id="bJI-7J-2Cq"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7WV-fi-1FX" firstAttribute="centerY" secondItem="LMk-Kc-Fad" secondAttribute="centerY" constant="-20" id="3Qu-wy-YHu"/>
+                            <constraint firstItem="mvT-hb-fOL" firstAttribute="centerX" secondItem="LMk-Kc-Fad" secondAttribute="centerX" id="Ilc-R2-W9r"/>
+                            <constraint firstItem="7WV-fi-1FX" firstAttribute="top" secondItem="gZ3-VA-Hxd" secondAttribute="bottom" constant="106" id="JNl-LP-hWM"/>
+                            <constraint firstItem="2Yv-Dh-VP3" firstAttribute="top" secondItem="mvT-hb-fOL" secondAttribute="bottom" constant="20" id="OrS-w0-xR0"/>
+                            <constraint firstItem="lVY-Wn-NMD" firstAttribute="leading" secondItem="LMk-Kc-Fad" secondAttribute="leading" constant="10" id="XOB-5u-XyJ"/>
+                            <constraint firstItem="lVY-Wn-NMD" firstAttribute="top" secondItem="LMk-Kc-Fad" secondAttribute="top" constant="9" id="fWn-vW-7oL"/>
+                            <constraint firstItem="7WV-fi-1FX" firstAttribute="leading" secondItem="LMk-Kc-Fad" secondAttribute="leading" id="gj1-MZ-VbJ"/>
+                            <constraint firstAttribute="trailing" secondItem="7WV-fi-1FX" secondAttribute="trailing" id="wv0-7X-8v6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MZT-Et-VNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-132" y="111.0944527736132"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bennyCamTitle" width="502" height="154"/>
+        <image name="spashScreen" width="800" height="800"/>
+    </resources>
+</document>
