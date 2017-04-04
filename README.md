@@ -1,4 +1,5 @@
 # iOS-Projects
+A list of iOS projects developed using Swift.
 
 ## It's a Zoo in there
 
