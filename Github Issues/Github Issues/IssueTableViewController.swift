@@ -31,7 +31,7 @@ class IssueTableViewController: UITableViewController {
         super.viewDidLoad()
         self.refreshControl = UIRefreshControl()
         
-        loadData { (issues) in
+        SharedNetworking.shared.loadData { (issues) in
             self.issueList = issues
             dump(self.issueList)
             DispatchQueue.main.async {
@@ -45,16 +45,14 @@ class IssueTableViewController: UITableViewController {
     // handleRefresh reloads data and updates the table
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         
-        loadData { (issues) in
+        SharedNetworking.shared.loadData { (issues) in
             self.issueList = issues
             dump(self.issueList)
             DispatchQueue.main.async {
-                //self.issueList.append(["test","test","test","test","test"])
                 self.tableView.reloadData()
+                refreshControl.endRefreshing()
             }
         }
-        
-        refreshControl.endRefreshing()
     }
     
     // set the number of columns in the table to the number of issues
@@ -90,103 +88,4 @@ class IssueTableViewController: UITableViewController {
             
         }
     }
-    
-    
-     // format data to show in date field
-    func dateFormat(_ dateVal: String) -> String{
-        let myDateFormatter = DateFormatter()
-        myDateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        myDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        myDateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let date = myDateFormatter.date(from:dateVal)
-        
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        
-        let new = formatter.string(from: date!)
-        return new
-    }
-    
-
-    // load data from the github API by parsing JSON
-    func loadData(completion: @escaping (([[String]])->Void) ){
-        
-        let urlString = "https://api.github.com/repos/uchicago-mobi/mpcs51030-2017-winter-forum/issues?state=open"
-        
-        guard let url = NSURL(string: urlString) else {
-            fatalError("Unable to create NSURL from string")
-        }
-        
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: url as URL, completionHandler: { (data, response, error) -> Void in
-            
-            guard error == nil else {
-                print("error: \(error!.localizedDescription)")
-                fatalError("Error: \(error!.localizedDescription)")
-            }
-            
-            guard let data = data else {
-                fatalError("Data is nil")
-            }
-            
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                
-                guard let issues = json as? [[String: AnyObject]] else {
-                    fatalError("We couldn't cast the JSON to an array of dictionaries")
-                }
-                
-                self.issueList = []
-                for issue in issues {
-                    self.issueInfo = []
-                    for (key, value) in issue {
-
-                        if key == "user" {
-                            
-                            if let id = value["login"] as? String {
-                                self.issueInfo.append(id)
-
-                            }
-                        }
-                        if key == "title" {
-                            if let title = value as? String {
-                                self.issueInfo.append(title)
-                            }
-                        }
-                        if key == "created_at" {
-                            if let timestamp = value as? String {
-                                self.issueInfo.append(self.dateFormat(timestamp))
-                            }
-                        }
-                        if key == "html_url" {
-                            if let html = value as? String {
-                                self.issueInfo.append(html)
-                            }
-                        }
-                        if key == "state" {
-                            if let state = value as? String {
-                                self.issueInfo.append(state)
-                            }
-
-                        }
-
-                    }
-                    self.issueList.append(self.issueInfo)
-                }
-                
-                
-            } catch {
-                print("error serializing JSON: \(error)")
-            }
-            
-            completion(self.issueList)
-        })
-        
-        task.resume()
-
-    }
-
 }
