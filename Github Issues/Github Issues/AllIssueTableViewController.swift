@@ -40,12 +40,10 @@ class AllIssueTableViewController: UITableViewController {
             dump(issues)
             self.issueList = issues
             DispatchQueue.main.async {
-                //self.issueList.append(["test","test","test","test","test"])
                 self.tableView.reloadData()
-                
+                refreshControl.endRefreshing()
             }
         }
-        refreshControl.endRefreshing()
     }
     
     // set the number of columns in the table to the number of issues
